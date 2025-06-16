@@ -103,3 +103,45 @@ Then show the menu.
 ### [e] Exit
 
 - The program terminates cleanly.
+
+## Flowchart
+
+```mermaid
+flowchart TD
+  Start([Start Program])
+  ShowTasks["Show current task list"]
+  NoTasks{Are there tasks?}
+  Menu["Display Menu<br>[a] Add • [r] Remove • [e] Exit"]
+  Invalid["Unknown option.<br>Please try again."]
+
+  Start --> ShowTasks
+  ShowTasks --> NoTasks
+  NoTasks -->|Yes| Menu
+  NoTasks -->|No| Menu
+
+  Menu --> AddTask[a]
+  Menu --> RemoveTask[r]
+  Menu --> Exit[e]
+  Menu --> InvalidCmd[Other input]
+
+  InvalidCmd --> Invalid
+  Invalid --> ShowTasks
+
+  %% Add Task
+  AddTask --> PromptAdd["Enter task description:"]
+  PromptAdd --> Added["Task added."]
+  Added --> ShowTasks
+
+  %% Remove Task
+  RemoveTask --> HasTasks{Are there tasks?}
+  HasTasks -->|No| NoTasksMsg["No tasks yet.<br>Returning to main menu."] --> ShowTasks
+  HasTasks -->|Yes| PromptRemove["Enter task number to remove<br>[b to go back]"]
+
+  PromptRemove --> ValidRemove{Valid number?}
+  ValidRemove -->|Yes| TaskRemoved["Task '{task}' removed."] --> ShowTasks
+  ValidRemove -->|No| InvalidRemove["Invalid task number."] --> PromptRemove
+  PromptRemove -->|b or Escape| BackToMenu["Returning to main menu."] --> ShowTasks
+
+  %% Exit
+  Exit --> End([Program exits])
+```
