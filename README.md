@@ -15,6 +15,8 @@ Each version supports the same set of basic features:
 
 There’s no file storage - everything lives in memory during a single run.
 
+See the full [App Specification](./SPEC.md) for expected behavior.
+
 ### Why this matters
 
 Even a simple app like this exercises several core language features:
@@ -24,8 +26,6 @@ Even a simple app like this exercises several core language features:
 - **Data structures** (managing a list of tasks)
 - **Printing and formatting** (user-friendly output)
 - **Mutability or immutability** (depending on the paradigm)
-
-It's small enough to finish in one sitting, but big enough to feel how each language "wants" to be written.
 
 ## Languages
 
